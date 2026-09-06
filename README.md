@@ -1,6 +1,6 @@
 # Harmonogram montáží – stažení
 
-**Ke stažení: [wikancz.github.io/harmonogram](https://wikancz.github.io/harmonogram/)**
+**Ke stažení: [wikancz.github.io/harmonogram](https://wikancz.github.io/harmonogram-montazi/)**
 
 Tento repozitář obsahuje **jen hotový instalátor** aplikace Harmonogram montáží, návod
 a stránku, ze které se dá stáhnout. Zdrojový kód je v soukromém repozitáři a nezveřejňuje se.
