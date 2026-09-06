@@ -116,7 +116,7 @@
 
       <a
         class="download"
-        href="https://github.com/wikancz/harmonogram/releases/latest/download/Harmonogram-Setup.exe"
+        href="https://github.com/wikancz/harmonogram-montazi/releases/latest/download/Harmonogram-Setup.exe"
         >⬇ Stáhnout pro Windows</a
       >
       <div class="version" id="version"></div>
@@ -225,7 +225,7 @@
       const verze = (rel) => rel.tag_name.replace(/^v/, "");
       const datum = (rel) => new Date(rel.published_at).toLocaleDateString("cs-CZ");
 
-      fetch("https://api.github.com/repos/wikancz/harmonogram/releases?per_page=15")
+      fetch("https://api.github.com/repos/wikancz/harmonogram-montazi/releases?per_page=15")
         .then((r) => (r.ok ? r.json() : Promise.reject()))
         .then((releases) => {
           const list = (releases || []).filter((r) => !r.draft);
