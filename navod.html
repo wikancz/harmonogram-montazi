@@ -1,0 +1,290 @@
+<title>Návod k harmonogramu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+
+:root{
+  --paper:#EDEFEA; --surface:#FFFFFF; --sunk:#E3E6DF;
+  --ink:#14181A; --muted:#5C6560; --faint:#8A928B;
+  --rule:#D2D7CE; --rule-hi:#B9C0B4;
+  --accent:#1F5063; --accent-soft:#DCE7EB;
+  --flag:#A03823; --flag-soft:#F2DFDA;
+  --ok:#3F6B33; --ok-soft:#DFE9DA;
+  --warn:#8A6A18; --warn-soft:#F0E7CE;
+  --shadow:0 1px 2px rgba(20,24,26,.06), 0 8px 24px -12px rgba(20,24,26,.18);
+  --d:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --b:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --m:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#121618; --surface:#1A2023; --sunk:#151B1D;
+    --ink:#E4E8E2; --muted:#9AA49D; --faint:#727C76;
+    --rule:#2C3436; --rule-hi:#3D4749;
+    --accent:#79B8CC; --accent-soft:#1B2E36;
+    --flag:#E5836C; --flag-soft:#33201C;
+    --ok:#92C078; --ok-soft:#1E2A1B;
+    --warn:#D3B45F; --warn-soft:#2C2617;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121618; --surface:#1A2023; --sunk:#151B1D;
+  --ink:#E4E8E2; --muted:#9AA49D; --faint:#727C76;
+  --rule:#2C3436; --rule-hi:#3D4749;
+  --accent:#79B8CC; --accent-soft:#1B2E36;
+  --flag:#E5836C; --flag-soft:#33201C;
+  --ok:#92C078; --ok-soft:#1E2A1B;
+  --warn:#D3B45F; --warn-soft:#2C2617;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--b); font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1140px;margin:0 auto;padding:0 28px 96px}
+.col{max-width:68ch}
+h1,h2,h3,h4{font-family:var(--d);text-wrap:balance;margin:0;line-height:1.14;letter-spacing:-.015em}
+h1{font-size:clamp(2.3rem,5.2vw,3.5rem);font-weight:700}
+h2{font-size:clamp(1.5rem,2.6vw,1.95rem);font-weight:600}
+h3{font-size:1.16rem;font-weight:600;letter-spacing:-.005em}
+p{margin:0}
+.eyebrow{font-family:var(--m);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.lede{font-size:1.16rem;color:var(--muted)}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:860px;margin:0 auto;padding:0 28px 90px}
+header.top{padding:64px 0 6px;display:flex;flex-direction:column;gap:16px}
+.meta{font-family:var(--m);font-size:.78rem;color:var(--faint);
+  border-top:1px solid var(--rule);padding-top:13px;display:flex;flex-wrap:wrap;gap:5px 18px}
+section{padding-top:50px;display:flex;flex-direction:column;gap:16px}
+.sechead{display:flex;flex-direction:column;gap:7px;border-top:2px solid var(--ink);padding-top:13px}
+h3{margin-top:8px}
+p,ul.plain li{max-width:66ch}
+.note{background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--accent);
+  border-radius:0 4px 4px 0;padding:14px 17px;font-size:.93rem;color:var(--muted);
+  display:flex;flex-direction:column;gap:6px}
+.note strong{color:var(--ink);font-family:var(--d);font-weight:600;font-size:.9rem}
+.note.w{border-left-color:var(--warn)}
+.note.g{border-left-color:var(--ok)}
+code,kbd{font-family:var(--m);font-size:.85em;background:var(--sunk);padding:1px 5px;border-radius:2px}
+kbd{border:1px solid var(--rule-hi);border-bottom-width:2px}
+.tbl{overflow-x:auto;border:1px solid var(--rule);border-radius:4px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:420px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+thead th{font-family:var(--m);font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--faint);font-weight:600;background:var(--sunk)}
+tbody tr:last-child td{border-bottom:none}
+td.k{white-space:nowrap;width:1%}
+td.k b{font-family:var(--d);font-weight:600}
+ol.steps{list-style:none;counter-reset:st;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;
+  background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+ol.steps li{counter-increment:st;background:var(--surface);padding:15px 18px 15px 54px;position:relative;font-size:.95rem}
+ol.steps li::before{content:counter(st);position:absolute;left:18px;top:15px;width:22px;height:22px;
+  border-radius:50%;background:var(--accent);color:var(--surface);font-family:var(--d);font-weight:700;
+  font-size:.72rem;display:flex;align-items:center;justify-content:center;margin-top:1px}
+ol.steps li > b:first-of-type{font-family:var(--d);font-weight:600;display:block;
+  margin-bottom:3px;color:var(--ink)}
+ul.plain{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:7px}
+.demo{background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:16px 18px;
+  display:flex;flex-direction:column;gap:10px}
+.demo .cap{font-size:.84rem;color:var(--muted)}
+.gr{display:flex;font-family:var(--m);min-width:max-content}
+.gr .lb{width:120px;flex:none;font-size:.72rem;color:var(--muted);display:flex;align-items:center;
+  justify-content:flex-end;padding-right:9px}
+.gr .cells{display:flex;position:relative}
+.gc{width:24px;height:22px;border:1px solid var(--rule);border-left:none;box-sizing:border-box;
+  display:flex;align-items:center;justify-content:center;font:700 .64rem/1 var(--d);color:rgba(0,0,0,.75)}
+.gc.we{background:var(--sunk)}
+.gc.hd{border:none;flex-direction:column;justify-content:center;height:24px;font-family:var(--m)}
+.gc.hd b{font-size:.6rem;font-weight:600;color:var(--ink)}
+.gc.hd i{font-size:.5rem;font-style:normal;color:var(--faint)}
+.gc.hd.we b,.gc.hd.we i{color:var(--flag)}
+.gc.fill{box-shadow:inset 0 0 0 1px rgba(0,0,0,.3)}
+.gc.idle{background-image:repeating-linear-gradient(45deg,transparent 0 3px,rgba(0,0,0,.18) 3px 5px)}
+.dueline{position:absolute;top:0;bottom:0;width:2px;background:var(--flag)}
+.legend{display:flex;flex-wrap:wrap;gap:13px;font-family:var(--m);font-size:.72rem;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend i{width:14px;height:14px;border:1px solid var(--rule-hi);border-radius:2px;display:inline-block}
+footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--rule);
+  font-family:var(--m);font-size:.76rem;color:var(--faint);display:flex;flex-wrap:wrap;gap:6px 20px}
+@page{size:A4;margin:16mm 15mm}
+@media print{
+  :root{--paper:#fff;--surface:#fff;--sunk:#f4f5f2}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .wrap{max-width:none;padding:0}
+  header.top{padding-top:0}
+  section,ol.steps li,.note,.tbl,.demo{break-inside:avoid}
+}
+@media (max-width:620px){.wrap{padding:0 18px 70px}body{font-size:16px}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <p class="eyebrow">Návod pro obsluhu</p>
+  <h1>Harmonogram montáží</h1>
+  <p class="lede">Denní plán nájezdů montážních part na akce, dva roky dopředu. Harmonogram vyplňuje celé okno; číselníky a správa dat jsou schované pod tlačítkem <b>Číselníky a data</b>, aby mřížce nebraly místo.</p>
+  <div class="meta"><span>Aplikace pro Windows</span><span>Zástupce v nabídce Start</span><span>Data ve složce na serveru</span></div>
+</header>
+
+<section>
+  <div class="sechead"><p class="eyebrow">Začátek</p><h2>Instalace a první spuštění</h2></div>
+  <p>Instalátor je ke stažení na <a href="https://wikancz.github.io/harmonogram/">wikancz.github.io/harmonogram</a>, bez přihlašování. Stáhněte <code>Harmonogram-Setup.exe</code> a spusťte. Instaluje se jen pro přihlášeného uživatele, takže nepotřebuje práva správce, a zástupce najdete v nabídce Start. Novou verzi nainstalujete přes starou, data zůstanou ve složce na serveru.</p>
+  <div class="note w">
+    <strong>Windows při prvním spuštění varuje</strong>
+    <p>Instalátor není podepsaný, takže se objeví modré okno <b>„Systém Windows ochránil váš počítač“</b>. Klikněte na <i>Další informace</i> a pak <i>Přesto spustit</i>. Je to jednorázové.</p>
+  </div>
+  <ol class="steps">
+    <li><b>Vyberte složku pro data</b>Klikněte na <i>Otevřít složku s daty</i> a zvolte složku na firemním serveru — tu, která se sama zálohuje. Aplikace si ji zapamatuje natrvalo a příště ji otevře sama. Změnit ji jde později v <i>Číselníky a data → Složka a zálohy</i>.</li>
+    <li><b>Doplňte montážní party</b>Tlačítko <b>Číselníky a data</b> vpravo nahoře, karta <i>Montážní party</i>. U každé jméno, jedno <b>písmeno</b> a <b>barvu</b>. Písmeno ani barva se nesmí opakovat — aplikace to hlídá už při psaní a sama nabídne první volné písmeno a nepoužitou barvu.</li>
+    <li><b>Doplňte realizátory</b>Tamtéž, karta <i>Realizátoři</i>. Jméno a zkratka (<code>če</code>, <code>ma</code>, <code>ru</code>, <code>ho</code>). Podle realizátora se akce v harmonogramu seskupují, stejně jako dnes v Excelu.</li>
+  </ol>
+  <p>Partu i realizátora jde později <b>upravit</b> (tlačítko <i>Upravit</i> v řádku) a <b>vyřadit</b>. Vyřazená parta se přestane nabízet u nových nájezdů a zmizí z pásu nepřítomností, ale její staré nájezdy zůstanou i s barvou; kdykoliv se dá <i>Vrátit</i>. <b>Smazat</b> úplně jde jen partu bez jediného nájezdu a realizátora bez akcí — jinak by z harmonogramu zmizela historie.</p>
+</section>
+
+<section>
+  <div class="sechead"><p class="eyebrow">Práce s harmonogramem</p><h2>Akce a nájezdy</h2></div>
+  <p>Novou akci založíte tlačítkem <b>+ Akce</b>. Formulář se otevře i dvojklikem na název akce v harmonogramu, nebo kliknutím na <b>⋯</b> vedle názvu.</p>
+  <p>Ve formuláři je název, zákazník, zakázkové číslo, realizátor, m² panelů, oba termíny, plánované dny a poznámka. <b>Skutečné dny se nedají vyplnit</b> — počítají se z nájezdů, aby se ta dvě čísla nemohla rozejít. Termíny nájezdů zadané ve formuláři jsou orientační; přesné datum se pohodlněji nastaví tažením přímo v harmonogramu.</p>
+  <h3>Nájezdy myší</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Co udělat</th><th>Co se stane</th></tr></thead>
+    <tbody>
+      <tr><td class="k"><b>táhnout</b> po prázdném řádku akce</td><td>vznikne nový nájezd, pak vyberete partu</td></tr>
+      <tr><td class="k"><b>táhnout</b> barevný blok</td><td>přesune se na jiný termín</td></tr>
+      <tr><td class="k"><b>táhnout okraj</b> bloku</td><td>prodlouží se nebo zkrátí</td></tr>
+      <tr><td class="k"><b>táhnout</b> blok na jiný řádek</td><td>nájezd přejde na jinou akci</td></tr>
+      <tr><td class="k"><b>dvojklik</b> na blok</td><td>změna party</td></tr>
+      <tr><td class="k">kliknout a <kbd>Delete</kbd></td><td>nájezd se smaže (po potvrzení)</td></tr>
+      <tr><td class="k"><kbd>Alt</kbd> + kliknout na den v bloku</td><td>zapne se práce ve volný den (a znovu vypne)</td></tr>
+      <tr><td class="k"><b>pravé tlačítko</b> kdekoliv v mřížce</td><td>nabídka: nový nájezd, změna party, práce ve volný den, otevřít akci, smazat</td></tr>
+    </tbody>
+  </table></div>
+  <div class="demo">
+    <div class="gr">
+      <span class="lb"></span>
+      <span class="cells">
+        <span class="gc hd"><b>10</b><i>po</i></span><span class="gc hd"><b>11</b><i>út</i></span>
+        <span class="gc hd"><b>12</b><i>st</i></span><span class="gc hd"><b>13</b><i>čt</i></span>
+        <span class="gc hd"><b>14</b><i>pá</i></span><span class="gc hd we"><b>15</b><i>so</i></span>
+        <span class="gc hd we"><b>16</b><i>ne</i></span><span class="gc hd"><b>17</b><i>po</i></span>
+        <span class="gc hd"><b>18</b><i>út</i></span><span class="gc hd"><b>19</b><i>st</i></span>
+      </span>
+    </div>
+    <div class="gr">
+      <span class="lb">OC Olympia</span>
+      <span class="cells">
+        <span class="gc fill" style="background:#92D050">A</span><span class="gc fill" style="background:#92D050">A</span>
+        <span class="gc fill" style="background:#92D050">A</span><span class="gc fill" style="background:#92D050">A</span>
+        <span class="gc fill" style="background:#92D050">A</span>
+        <span class="gc fill idle" style="background:#92D050"></span><span class="gc fill idle" style="background:#92D050"></span>
+        <span class="gc fill" style="background:#92D050">A</span><span class="gc fill" style="background:#92D050">A</span>
+        <span class="gc"></span>
+        <span class="dueline" style="left:216px"></span>
+      </span>
+    </div>
+    <div class="legend">
+      <span><i style="background:#92D050"></i>parta A pracuje</span>
+      <span><i style="background:#92D050;background-image:repeating-linear-gradient(45deg,transparent 0 3px,rgba(0,0,0,.18) 3px 5px)"></i>šrafovaně = volný den, nepočítá se</span>
+      <span><i style="background:var(--flag);width:3px;border:none"></i>termín dokončení</span>
+    </div>
+    <p class="cap">Sedmidenní nájezd 10.–18. listopadu: devět kalendářních dnů, sedm montážních. Víkend uvnitř bloku je šrafovaný.</p>
+  </div>
+  <div class="note w">
+    <strong>Dvě věci, které zpočátku překvapí — a jsou schválně</strong>
+    <p><b>Blok posunutý o den přeteče přes víkend.</b> Pětidenní montáž posunutá z pondělí na úterý běží do dalšího pondělí a zůstane pětidenní.</p>
+    <p><b>Tažení jen přes víkend blok nezmění.</b> Okraj se vždycky přitáhne na pracovní den. Když vytáhnete pravý okraj na sobotu, nestane se nic; až čtvrtek nebo pondělí blok skutečně prodlouží.</p>
+  </div>
+  <h3>Nepřítomnost party</h3>
+  <p>Školení, dovolené a odstávky se kreslí stejným tažením, ale v <b>pásu part</b> pod akcemi. Po puštění vyberete, o co jde.</p>
+  <h3>Ukončení akce</h3>
+  <p>Ve formuláři akce vlevo dole <b>Ukončit akci</b>. Akce zmizí z harmonogramu, ale zůstane v <i>Číselníky a data → Archiv</i>, odkud se dá kdykoliv vrátit. Nemaže se.</p>
+</section>
+
+<section>
+  <div class="sechead"><p class="eyebrow">Zobrazení</p><h2>Co je vidět a co aplikace hlídá</h2></div>
+  <p><b>Dnes</b> skočí na dnešní datum, tlačítka <b>‹ rok · ‹ měsíc · ‹ týden</b> a jejich protějšky posouvají výhled, políčko <b>na datum</b> skočí kamkoliv.</p>
+  <p><b>Hustota</b> je posuvník, který mění šířku dne. Ve výchozí poloze se na velký monitor vejde asi 2,5 měsíce; přesný počet dnů ukáže bublina nad posuvníkem. Hustotu, přepínač víkendů, sbalené skupiny i místo, kde jste v harmonogramu skončili, si aplikace pamatuje a při dalším spuštění se k nim vrátí. Přepínač <b>skrýt prázdné víkendy</b> složí prázdné víkendy a svátky a prodlouží výhled asi o třetinu, aniž by se cokoliv zmenšilo.</p>
+  <p>Když jsou v souboru starší data, než je dnešek, mřížka se po otevření posune na začátek plánu a řekne to. Tlačítkem <i>Dnes</i> se vrátíte.</p>
+  <div class="note g">
+    <strong>Den s naplánovanou prací se nikdy neskryje</strong>
+    <p>Sobota, ve které parta jede, zůstane vidět i při skrytých víkendech a je v hlavičce označená. Skrývají se jen dny, ve kterých nic není.</p>
+  </div>
+  <p>Víkendy a <b>státní svátky se počítají z data</b>, ručně se nezadávají — včetně pohyblivých Velikonoc.</p>
+  <p>Když jedna parta vyjde ve stejný den na dvě akce, oba bloky dostanou červený rám a pod harmonogramem se objeví upozornění. <b>Uložení to nebrání</b>, rozhodnutí je na vás. Stejně tak měkká upozornění ve formuláři akce: termín dokončení před zahájením, akce bez nájezdu, plánované dny nesouhlasí se skutečnými, nájezdy přesahují termín.</p>
+</section>
+
+<section>
+  <div class="sechead"><p class="eyebrow">Papír</p><h2>Tisk</h2></div>
+  <p>Tlačítko <b>Tisk</b>. Vyberete rozsah dat, papír, orientaci a hustotu; dialog rovnou řekne, kolik listů z toho bude.</p>
+  <p>Výchozí nastavení je <b>A3 na šířku</b>, kam se vejde asi <b>88 dnů na list</b>, tedy tři měsíce. Dva roky vyjdou na devět listů a zlomy mezi nimi padají na pondělí. Na papíře znamená šrafování volný den uvnitř nájezdu a svislá červená čára termín dokončení.</p>
+  <div class="note">
+    <strong>Když tisk z aplikace nefunguje</strong>
+    <p>Vedle <i>Tisknout</i> je <b>Uložit soubor k tisku</b>. Vysází stejné listy do souboru <code>harmonogram-k-tisku.html</code> ve složce s daty — ten otevřete v prohlížeči a vytisknete odtamtud. Hodí se i když chcete harmonogram někomu poslat.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sechead"><p class="eyebrow">Data</p><h2>Ukládání a zálohy</h2></div>
+  <p><b>Ukládá se samo</b>, asi sekundu po každé změně. Stav ukazuje políčko vpravo v horní liště: <code>neuloženo</code> → <code>ukládám…</code> → <code>uloženo 14:32</code>. Zavření okna změny také uloží. Ručně uložíte tlačítkem <b>Uložit</b> nebo <kbd>Ctrl+S</kbd>.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Soubor ve složce</th><th>Co to je</th></tr></thead>
+    <tbody>
+      <tr><td class="k"><code>harmonogram.json</code></td><td>vaše data</td></tr>
+      <tr><td class="k"><code>zalohy/</code></td><td>posledních 20 stavů <b>před</b> každým uložením</td></tr>
+      <tr><td class="k"><code>harmonogram-tisk.xls</code></td><td>harmonogram jako tabulka pro Excel, přepisuje se sám</td></tr>
+      <tr><td class="k"><code>harmonogram-k-tisku.html</code></td><td>listy k tisku, vznikne až si o ně řeknete</td></tr>
+      <tr><td class="k"><code>harmonogram.lock</code></td><td>značka, že je harmonogram otevřený</td></tr>
+    </tbody>
+  </table></div>
+  <p>Zálohu aplikace nikdy nepřepíše — pojmenovává je časem uložení, takže se v nich dá hledat podle data. <i>Číselníky a data → Složka a zálohy</i> je umí zobrazit a vrátit; obnovení se dá vzít zpět přes <kbd>Ctrl+Z</kbd>.</p>
+  <p><b>Kdyby se hlavní soubor poškodil</b>, aplikace to při otevření pozná, vezme nejnovější použitelnou zálohu a řekne vám to. Poškozený soubor nechá ležet, dokud sami neuložíte.</p>
+  <div class="note">
+    <strong>Cesta zpátky do Excelu</strong>
+    <p><code>harmonogram-tisk.xls</code> ve složce s daty je <b>vždycky aktuální</b> — přepisuje se při každém uložení a otevře se v Excelu i s barvami a písmeny part. Kdyby aplikace přestala fungovat nebo nebylo koho se zeptat, tenhle soubor je plnohodnotná náhrada. Nemusíte pro něj nic dělat.</p>
+  </div>
+  <div class="note w">
+    <strong>Jeden člověk v jednu chvíli</strong>
+    <p>Harmonogram počítá s jediným člověkem, který plánuje. Když ho otevřete ve dvou oknech nebo na dvou počítačích, druhé se otevře <b>jen pro čtení</b>: v horní liště svítí odznak <i>jen pro čtení</i> a nic se nedá měnit. Stačí první okno zavřít a aplikaci spustit znovu.</p>
+    <p>Když víte jistě, že žádné druhé okno neběží — třeba po pádu aplikace nebo po vypnutí počítače — klikněte vedle odznaku na <b>Převzít</b>. Harmonogram si vezme zámek zpátky a načte data znovu ze souboru.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sechead"><p class="eyebrow">Zkratky</p><h2>Klávesy</h2></div>
+  <div class="tbl"><table>
+    <tbody>
+      <tr><td class="k"><kbd>Ctrl+Z</kbd></td><td>zpět</td></tr>
+      <tr><td class="k"><kbd>Ctrl+Shift+Z</kbd> nebo <kbd>Ctrl+Y</kbd></td><td>znovu</td></tr>
+      <tr><td class="k"><kbd>Ctrl+S</kbd></td><td>uložit hned</td></tr>
+      <tr><td class="k"><kbd>Delete</kbd></td><td>smazat vybraný nájezd nebo nepřítomnost (po potvrzení)</td></tr>
+      <tr><td class="k"><kbd>Esc</kbd></td><td>zrušit výběr, zavřít formulář</td></tr>
+      <tr><td class="k"><kbd>Alt</kbd> + klik</td><td>práce ve volný den</td></tr>
+    </tbody>
+  </table></div>
+  <p>Zpět funguje na všechno, i na ukončení akce nebo obnovu ze zálohy. Historie drží posledních 200 kroků.</p>
+</section>
+
+<section>
+  <div class="sechead"><p class="eyebrow">Pomoc</p><h2>Když se něco nedaří</h2></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Co vidíte</th><th>Co s tím</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Windows hlásí, že ochránil počítač</td><td>Instalátor není podepsaný. <i>Další informace</i> → <i>Přesto spustit</i>.</td></tr>
+      <tr><td class="k">Tlačítka jsou šedá, nejde založit akce</td><td>Buď nemáte vybranou složku, nebo je harmonogram otevřený v jiném okně — v horní liště pak svítí odznak <i>jen pro čtení</i>. Když už druhé okno neběží, klikněte na <b>Převzít</b>.</td></tr>
+      <tr><td class="k">Složka na serveru není vidět</td><td>Musí být připojená jako disk nebo dostupná přes síťovou cestu. SharePoint ani jiné webové rozhraní aplikace neumí.</td></tr>
+      <tr><td class="k">Nájezd hlásí volný den</td><td>Nájezd nesmí začínat ani končit ve víkendu nebo o svátku. Posuňte okraj na pracovní den, nebo ten den povolte přes <kbd>Alt</kbd> + klik.</td></tr>
+      <tr><td class="k">Něco jsem rozbil a nevím co</td><td><kbd>Ctrl+Z</kbd> opakovaně. Když to nepomůže, <i>Číselníky a data → Složka a zálohy</i> a vrátit se na stav před chybou.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<footer>
+  <span>Návod k harmonogramu montáží</span>
+  <span>Zdrojová verze: README.md v projektu</span>
+</footer>
+</div>

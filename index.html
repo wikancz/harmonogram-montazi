@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Harmonogram montáží – stažení</title>
+    <meta name="description" content="Denní harmonogram nájezdů montážních part na akce. Aplikace pro Windows." />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="#1f5063" />
+    <style>
+      /* Barvy aplikace: papír, inkoust, modrozelený akcent. */
+      :root {
+        --bg: #edefea;
+        --panel: #ffffff;
+        --text: #14181a;
+        --muted: #5c6560;
+        --accent: #1f5063;
+        --accent-soft: #dce7eb;
+        --warn: #8a6a18;
+        --border: #d2d7ce;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #121618;
+          --panel: #1a2023;
+          --text: #e4e8e2;
+          --muted: #9aa49d;
+          --accent: #79b8cc;
+          --accent-soft: #1b2e36;
+          --warn: #d3b45f;
+          --border: #2c3436;
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 32px 20px 64px;
+        background: var(--bg);
+        color: var(--text);
+        font: 17px/1.6 -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+      }
+      main { width: 100%; max-width: 620px; }
+      header { text-align: center; margin-bottom: 36px; }
+      h1 { margin: 0 0 6px; font-size: 34px; color: var(--accent); }
+      .sub { color: var(--muted); font-size: 17px; }
+      .download {
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        background: var(--accent);
+        color: #fff;
+        font-size: 22px;
+        font-weight: 700;
+        padding: 20px 24px;
+        border-radius: 12px;
+        margin-bottom: 10px;
+      }
+      .download:hover { filter: brightness(1.1); }
+      .version {
+        text-align: center;
+        color: var(--muted);
+        font-size: 15px;
+        margin-bottom: 14px;
+        min-height: 1.6em;
+      }
+      .manual {
+        display: block;
+        text-align: center;
+        margin-bottom: 32px;
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 18px 20px;
+        margin-bottom: 18px;
+      }
+      .card h2 { margin: 0 0 8px; font-size: 17px; color: var(--warn); }
+      .card.info h2 { color: var(--accent); }
+      .card p { margin: 0 0 10px; }
+      .card p:last-child { margin-bottom: 0; }
+      ol { margin: 0; padding-left: 22px; }
+      li { margin-bottom: 6px; }
+      code {
+        background: var(--accent-soft);
+        border-radius: 4px;
+        padding: 1px 5px;
+        font-size: 0.9em;
+      }
+      /* Novinky z vydání (vyplní skript). */
+      .notes { margin-top: 28px; }
+      .notes h3 { font-size: 15px; color: var(--muted); margin: 16px 0 6px; font-weight: 600; }
+      .notes h3:first-child { margin-top: 4px; }
+      .notes ul { margin: 0; padding-left: 22px; }
+      .notes li { margin-bottom: 8px; }
+      .notes li:last-child { margin-bottom: 0; }
+      .older summary { cursor: pointer; padding: 8px 0; color: var(--accent); font-size: 15px; }
+      .older details + details { border-top: 1px solid var(--border); }
+      .older details[open] summary { color: var(--muted); }
+      .older details > div { padding-bottom: 8px; }
+      footer { margin-top: 36px; text-align: center; color: var(--muted); font-size: 14px; }
+      footer a { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Harmonogram montáží</h1>
+        <div class="sub">Denní plán nájezdů montážních part na akce, dva roky dopředu</div>
+      </header>
+
+      <a
+        class="download"
+        href="https://github.com/wikancz/harmonogram/releases/latest/download/Harmonogram-Setup.exe"
+        >⬇ Stáhnout pro Windows</a
+      >
+      <div class="version" id="version"></div>
+      <a class="manual" href="navod.html">Návod pro obsluhu →</a>
+
+      <div class="card">
+        <h2>Windows vás při prvním spuštění upozorní</h2>
+        <p>
+          Instalátor není podepsaný placeným certifikátem, takže ho Windows nezná a zobrazí modré
+          okno „Systém Windows ochránil váš počítač“. Není to chyba ani virus:
+        </p>
+        <ol>
+          <li>klikněte na <strong>Další informace</strong>,</li>
+          <li>pak na <strong>Přesto spustit</strong>.</li>
+        </ol>
+        <p>Instaluje se jen pro přihlášeného uživatele, práva správce nejsou potřeba.</p>
+      </div>
+
+      <div class="card info">
+        <h2>Po prvním spuštění vyberte složku pro data</h2>
+        <p>
+          Aplikace ukládá do složky, kterou jí ukážete — tlačítko <strong>Otevřít složku
+          s daty</strong>. Zvolte složku na firemním serveru, která se sama zálohuje. Aplikace si ji
+          zapamatuje a příště ji otevře sama. Podrobnosti v <a href="navod.html">návodu</a>.
+        </p>
+      </div>
+
+      <div class="card info">
+        <h2>Jak se aplikace aktualizuje</h2>
+        <p>
+          Novou verzi stáhnete znovu z této stránky a nainstalujete přes tu starou. Data ve složce
+          na serveru se tím nedotknou.
+        </p>
+      </div>
+
+      <section class="card notes" id="notes" hidden>
+        <h2 id="notes-title"></h2>
+        <div id="notes-body"></div>
+      </section>
+
+      <section class="card notes older" id="older" hidden>
+        <h2>Starší verze</h2>
+        <div id="older-body"></div>
+      </section>
+
+      <footer>Když něco nefunguje, napište Milanovi.</footer>
+    </main>
+
+    <script>
+      // Doplní verzi, velikost, datum a novinky. Odkaz na stažení funguje i bez
+      // skriptu — míří na "latest". Sekce „Interní“ z poznámek k vydání je pro
+      // vývoj a na stránku se nedostane.
+      function bezInterniSekce(md) {
+        const out = [];
+        let skip = false;
+        for (const line of md.split("\n")) {
+          const heading = line.match(/^\s*#{1,6}\s+(.*?)\s*$/);
+          if (heading) skip = /^interní$/i.test(heading[1]);
+          if (!skip) out.push(line);
+        }
+        return out.join("\n");
+      }
+
+      // Escapuje se jako první, takže do stránky nemůže proniknout cizí HTML;
+      // teprve pak se převede hrstka značek, kterou changelog používá.
+      function renderNotes(input) {
+        const md = bezInterniSekce(input);
+        const esc = (t) =>
+          t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+        const inline = (t) =>
+          esc(t)
+            .replace(/`([^`]+)`/g, "<code>$1</code>")
+            .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+            .replace(/\[([^\]]+)\]\((https:\/\/[^)\s]+)\)/g, '<a href="$2">$1</a>');
+        const out = [];
+        let items = null;
+        let para = null;
+        const flushList = () => {
+          if (items) {
+            out.push("<ul>" + items.map((i) => "<li>" + inline(i) + "</li>").join("") + "</ul>");
+            items = null;
+          }
+        };
+        const flushPara = () => {
+          if (para) {
+            out.push("<p>" + inline(para) + "</p>");
+            para = null;
+          }
+        };
+        for (const raw of md.split("\n")) {
+          const line = raw.trim();
+          if (!line) { flushList(); flushPara(); continue; }
+          const heading = line.match(/^#{1,6}\s+(.*)$/);
+          if (heading) { flushList(); flushPara(); out.push("<h3>" + inline(heading[1]) + "</h3>"); continue; }
+          const bullet = line.match(/^[-*]\s+(.*)$/);
+          if (bullet) { flushPara(); (items ||= []).push(bullet[1]); continue; }
+          // changelog je zalomený na 80 znaků — pokračování odrážky nebo odstavce
+          if (items) items[items.length - 1] += " " + line;
+          else para = para ? para + " " + line : line;
+        }
+        flushList();
+        flushPara();
+        return out.join("");
+      }
+
+      const verze = (rel) => rel.tag_name.replace(/^v/, "");
+      const datum = (rel) => new Date(rel.published_at).toLocaleDateString("cs-CZ");
+
+      fetch("https://api.github.com/repos/wikancz/harmonogram/releases?per_page=15")
+        .then((r) => (r.ok ? r.json() : Promise.reject()))
+        .then((releases) => {
+          const list = (releases || []).filter((r) => !r.draft);
+          if (!list.length) return;
+          const [latest, ...older] = list;
+          const setup = (latest.assets || []).find((a) => a.name.endsWith("Setup.exe"));
+          const mb = setup ? " • " + (setup.size / 1048576).toFixed(1) + " MB" : "";
+          document.getElementById("version").textContent =
+            "Verze " + verze(latest) + mb + " • vydáno " + datum(latest);
+
+          const notesHtml = (rel) => renderNotes(rel.body || "");
+          const latestHtml = notesHtml(latest);
+          if (latestHtml) {
+            document.getElementById("notes-title").textContent = "Co je nového ve verzi " + verze(latest);
+            document.getElementById("notes-body").innerHTML = latestHtml;
+            document.getElementById("notes").hidden = false;
+          }
+          const withNotes = older.map((r) => [r, notesHtml(r)]).filter(([, html]) => html);
+          if (withNotes.length) {
+            const body = document.getElementById("older-body");
+            for (const [rel, html] of withNotes) {
+              const d = document.createElement("details");
+              const s = document.createElement("summary");
+              s.textContent = "Verze " + verze(rel) + " • " + datum(rel);
+              const div = document.createElement("div");
+              div.innerHTML = html;
+              d.append(s, div);
+              body.append(d);
+            }
+            document.getElementById("older").hidden = false;
+          }
+        })
+        .catch(() => {});
+    </script>
+  </body>
+</html>
