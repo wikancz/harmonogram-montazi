@@ -208,7 +208,7 @@ footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--rule);
 <section>
   <div class="sechead"><p class="eyebrow">Zobrazení</p><h2>Co je vidět a co aplikace hlídá</h2></div>
   <p><b>Dnes</b> skočí na dnešní datum, tlačítka <b>‹ rok · ‹ měsíc · ‹ týden</b> a jejich protějšky posouvají výhled, políčko <b>na datum</b> skočí kamkoliv.</p>
-  <p><b>Hustota</b> je posuvník, který mění šířku dne. Ve výchozí poloze se na velký monitor vejde asi 2,5 měsíce; přesný počet dnů ukáže bublina nad posuvníkem. Hustotu, přepínač víkendů, sbalené skupiny i místo, kde jste v harmonogramu skončili, si aplikace pamatuje a při dalším spuštění se k nim vrátí. Přepínač <b>skrýt prázdné víkendy</b> složí prázdné víkendy a svátky a prodlouží výhled asi o třetinu, aniž by se cokoliv zmenšilo.</p>
+  <p><b>Hustota</b> je posuvník, který mění šířku dne. Ve výchozí poloze se na velký monitor vejde asi 2,5 měsíce; přesný počet dnů ukáže bublina nad posuvníkem. <b>Písmo</b> (tlačítka − a +, nebo <kbd>Ctrl+kolečko</kbd>, <kbd>Ctrl +</kbd>, <kbd>Ctrl −</kbd>) zvětší celé okno jako lupa v prohlížeči — písmo i mřížka rostou spolu, takže se na obrazovku vejde méně dnů. Hustota říká, kolik dnů chcete vidět, písmo, jak velké to má být; <kbd>Ctrl 0</kbd> vrátí 100 %. Hustotu, písmo, přepínač víkendů, sbalené skupiny i místo, kde jste v harmonogramu skončili, si aplikace pamatuje a při dalším spuštění se k nim vrátí. Přepínač <b>skrýt prázdné víkendy</b> složí prázdné víkendy a svátky a prodlouží výhled asi o třetinu, aniž by se cokoliv zmenšilo.</p>
   <p>Když jsou v souboru starší data, než je dnešek, mřížka se po otevření posune na začátek plánu a řekne to. Tlačítkem <i>Dnes</i> se vrátíte.</p>
   <div class="note g">
     <strong>Den s naplánovanou prací se nikdy neskryje</strong>
@@ -236,7 +236,7 @@ footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--rule);
     <tbody>
       <tr><td class="k"><code>harmonogram.json</code></td><td>vaše data</td></tr>
       <tr><td class="k"><code>zalohy/</code></td><td>posledních 20 stavů <b>před</b> každým uložením</td></tr>
-      <tr><td class="k"><code>harmonogram-tisk.xls</code></td><td>harmonogram jako tabulka pro Excel, přepisuje se sám</td></tr>
+      <tr><td class="k"><code>harmonogram-tabulka.html</code></td><td>harmonogram jako obarvená tabulka pro nouzi, přepisuje se sám</td></tr>
       <tr><td class="k"><code>harmonogram-k-tisku.html</code></td><td>listy k tisku, vznikne až si o ně řeknete</td></tr>
       <tr><td class="k"><code>harmonogram.lock</code></td><td>značka, že je harmonogram otevřený</td></tr>
     </tbody>
@@ -245,7 +245,7 @@ footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--rule);
   <p><b>Kdyby se hlavní soubor poškodil</b>, aplikace to při otevření pozná, vezme nejnovější použitelnou zálohu a řekne vám to. Poškozený soubor nechá ležet, dokud sami neuložíte.</p>
   <div class="note">
     <strong>Cesta zpátky do Excelu</strong>
-    <p><code>harmonogram-tisk.xls</code> ve složce s daty je <b>vždycky aktuální</b> — přepisuje se při každém uložení a otevře se v Excelu i s barvami a písmeny part. Kdyby aplikace přestala fungovat nebo nebylo koho se zeptat, tenhle soubor je plnohodnotná náhrada. Nemusíte pro něj nic dělat.</p>
+    <p><code>harmonogram-tabulka.html</code> ve složce s daty je <b>vždycky aktuální</b> — přepisuje se při každém uložení a otevře se v prohlížeči i s barvami a písmeny part; do Excelu ji dostanete označením tabulky a zkopírováním, barvy přejdou s ní. Kdyby aplikace přestala fungovat nebo nebylo koho se zeptat, tenhle soubor je plnohodnotná náhrada. Nemusíte pro něj nic dělat.</p>
   </div>
   <div class="note w">
     <strong>Jeden člověk v jednu chvíli</strong>
@@ -261,6 +261,7 @@ footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--rule);
       <tr><td class="k"><kbd>Ctrl+Z</kbd></td><td>zpět</td></tr>
       <tr><td class="k"><kbd>Ctrl+Shift+Z</kbd> nebo <kbd>Ctrl+Y</kbd></td><td>znovu</td></tr>
       <tr><td class="k"><kbd>Ctrl+S</kbd></td><td>uložit hned</td></tr>
+      <tr><td class="k"><kbd>Ctrl +</kbd> · <kbd>Ctrl −</kbd> · <kbd>Ctrl 0</kbd> · <kbd>Ctrl+kolečko</kbd></td><td>zvětšit, zmenšit, vrátit písmo na 100 %</td></tr>
       <tr><td class="k"><kbd>Delete</kbd></td><td>smazat vybraný nájezd nebo nepřítomnost (po potvrzení)</td></tr>
       <tr><td class="k"><kbd>Esc</kbd></td><td>zrušit výběr, zavřít formulář</td></tr>
       <tr><td class="k"><kbd>Alt</kbd> + klik</td><td>práce ve volný den</td></tr>
