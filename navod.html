@@ -214,30 +214,30 @@ footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--rule);
     <strong>Den s naplánovanou prací se nikdy neskryje</strong>
     <p>Sobota, ve které parta jede, zůstane vidět i při skrytých víkendech a je v hlavičce označená. Skrývají se jen dny, ve kterých nic není.</p>
   </div>
-  <p>Víkendy a <b>státní svátky se počítají z data</b>, ručně se nezadávají — včetně pohyblivých Velikonoc.</p>
+  <p>Víkendy a <b>státní svátky se počítají z data</b>, ručně se nezadávají — včetně pohyblivých Velikonoc. Seznam svátků letošního a příštího roku je v <i>Číselníky a data → Svátky</i>; svátky připadající na víkend jsou tam šedě.</p>
   <p>Když jedna parta vyjde ve stejný den na dvě akce, oba bloky dostanou červený rám a pod harmonogramem se objeví upozornění. <b>Uložení to nebrání</b>, rozhodnutí je na vás. Stejně tak měkká upozornění ve formuláři akce: termín dokončení před zahájením, akce bez nájezdu, plánované dny nesouhlasí se skutečnými, nájezdy přesahují termín.</p>
 </section>
 
 <section>
   <div class="sechead"><p class="eyebrow">Papír</p><h2>Tisk</h2></div>
   <p>Tlačítko <b>Tisk</b>. Vyberete rozsah dat, papír, orientaci a hustotu; dialog rovnou řekne, kolik listů z toho bude.</p>
-  <p>Výchozí nastavení je <b>A3 na šířku</b>, kam se vejde asi <b>88 dnů na list</b>, tedy tři měsíce. Dva roky vyjdou na devět listů a zlomy mezi nimi padají na pondělí. Na papíře znamená šrafování volný den uvnitř nájezdu a svislá červená čára termín dokončení.</p>
+  <p>Výchozí nastavení je <b>A3 na šířku</b>, kam se vejde asi <b>88 dnů na list</b>, tedy tři měsíce. Dva roky vyjdou na devět listů a zlomy mezi nimi padají na pondělí. Na každém listu jsou jen akce, které v jeho období mají nájezd nebo termín dokončení; party jsou na každém listu všechny. Na papíře znamená šrafování volný den uvnitř nájezdu a svislá červená čára termín dokončení.</p>
   <div class="note">
     <strong>Když tisk z aplikace nefunguje</strong>
-    <p>Vedle <i>Tisknout</i> je <b>Uložit soubor k tisku</b>. Vysází stejné listy do souboru <code>harmonogram-k-tisku.html</code> ve složce s daty — ten otevřete v prohlížeči a vytisknete odtamtud. Hodí se i když chcete harmonogram někomu poslat.</p>
+    <p>Vedle <i>Tisknout</i> je <b>Uložit soubor k tisku</b>. Zeptá se, kam soubor uložit — nabídne složku, kam šel naposledy (poprvé složku s daty), a název <code>harmonogram-k-tisku.html</code>, ale může to být i plocha nebo příloha e-mailu. Vysází do něj stejné listy a vpravo dole se objeví oznámení s tlačítkem <b>Otevřít</b>, které soubor rovnou otevře v prohlížeči; odtamtud vytisknete. Hodí se i když chcete harmonogram někomu poslat.</p>
   </div>
 </section>
 
 <section>
   <div class="sechead"><p class="eyebrow">Data</p><h2>Ukládání a zálohy</h2></div>
-  <p><b>Ukládá se samo</b>, asi sekundu po každé změně. Stav ukazuje políčko vpravo v horní liště: <code>neuloženo</code> → <code>ukládám…</code> → <code>uloženo 14:32</code>. Zavření okna změny také uloží. Ručně uložíte tlačítkem <b>Uložit</b> nebo <kbd>Ctrl+S</kbd>.</p>
+  <p><b>Ukládá se samo</b>, asi sekundu po každé změně. Stav ukazuje políčko vlevo v horní liště: <code>neuloženo</code> → <code>ukládám…</code> → <code>uloženo 14:32</code>. Zavření okna změny také uloží. Ručně uložíte tlačítkem <b>Uložit</b> nebo <kbd>Ctrl+S</kbd>.</p>
   <div class="tbl"><table>
     <thead><tr><th>Soubor ve složce</th><th>Co to je</th></tr></thead>
     <tbody>
       <tr><td class="k"><code>harmonogram.json</code></td><td>vaše data</td></tr>
       <tr><td class="k"><code>zalohy/</code></td><td>posledních 20 stavů <b>před</b> každým uložením</td></tr>
       <tr><td class="k"><code>harmonogram-tabulka.html</code></td><td>harmonogram jako obarvená tabulka pro nouzi, přepisuje se sám</td></tr>
-      <tr><td class="k"><code>harmonogram-k-tisku.html</code></td><td>listy k tisku, vznikne až si o ně řeknete</td></tr>
+      <tr><td class="k"><code>harmonogram-k-tisku.html</code></td><td>listy k tisku, vznikne až si o ně řeknete; jde uložit i jinam</td></tr>
       <tr><td class="k"><code>harmonogram.lock</code></td><td>značka, že je harmonogram otevřený</td></tr>
     </tbody>
   </table></div>
